@@ -988,15 +988,19 @@ class NeteaseAPI
      *
      * @param  $mobile       [目标手机号]
      * @param  $deviceId     [目标设备号，可选参数]
+     * @param  $templateId   [模板编号，可选参数]
+     * @param  $code         [用户自定义验证码，可选参数]
      *
      * @return $result [返回array数组对象]
      */
-    public function sendSmsCode($mobile, $deviceId = '')
+    public function sendSmsCode($mobile, $deviceId = '', $templateId = '', $code = '')
     {
         $url = 'https://api.netease.im/sms/sendcode.action';
         $data = array(
             'mobile' => $mobile,
             'deviceId' => $deviceId,
+            'templateid' => $templateId,
+            'authCode' => $code,
         );
         if ($this->RequestType == 'curl') {
             $result = $this->postDataCurl($url, $data);
